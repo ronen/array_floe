@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Ronen Barzel"]
+  s.authors = ["ronen barzel"]
   s.date = %q{2011-04-09}
   s.description = %q{
 This small extension to ruby's Array class provides two additional
@@ -26,6 +26,7 @@ It's particularly handy for generating CSS classes.
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",

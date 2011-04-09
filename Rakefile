@@ -15,10 +15,16 @@ Jeweler::Tasks.new do |gem|
   gem.name = "array_floe"
   gem.homepage = "http://github.com/ronen/array_floe"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "ronen@modernpolity.org"
-  gem.authors = ["Ronen Barzel"]
+  gem.summary = %Q{Provides iterators Array#each_with_floe and Array#each_with_index_floe}
+  gem.description = %Q{
+This small extension to ruby's Array class provides two additional
+iterators, Array#each_with_floe and Array#each_with_index_floe, that
+simplify the reasonably-common need to specially handle "floe"--i.e.,
+first, last, odd, even--when iterating through the elements of an array.
+It's particularly handy for generating CSS classes.
+  }
+  gem.email = "ronen@barzel.org"
+  gem.authors = ["ronen barzel"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
