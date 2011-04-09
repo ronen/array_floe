@@ -1,19 +1,76 @@
 = array_floe
 
-Description goes here.
+This small extension to ruby's Array class simplifies the reasonably-common
+need to specially handle "floe"--i.e., <b>f</b>irst, <b>l</b>ast, <b>o</b>dd, <b>e</b>ven--when
+iterating through the elements of an array.  It's particularly handy for
+generating CSS classes.
 
-== Contributing to array_floe
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+The gem provides two additional iterators, Array#each_with_floe and
+Array#each_with_index_floe, that provide a "floe" object for each element
+in the array:
+
+    ary.each_with_floe do |element, floe|
+        if floe.first?
+            puts "#{element} is the first element"
+        end
+        if floe.last?
+            puts "#{element} is the last element"
+        end
+        if floe.odd?
+            puts "#{element} is an odd-numbered element"
+        end
+        if floe.even?
+            puts "#{element} is an even-numbered element"
+        end
+    end
+
+    ary.each_with_index_floe do |element, i, floe|
+        assert_equal(i == 0,        floe.first?)
+        assert_equal(i == ary.last, floe.last?)
+        assert_equal(i % 2 == 1,    float.odd?)
+        assert_equal(i % 2 == 1,    float.even?)
+    end
+
+If no block is given, an enumerator is returned instead.
+
+The "floe" object's <code>to_s</code> method returns a space-separated list
+of "first", "last", "odd", and "even" as appropriate:
+
+    [:a, :b, :c, :d].each_with_floe.collect{|element, floe| floe.to_s} #=> [ "first even", "odd", "even", "last odd" ]
+
+<code>floe.to_s</code> is particularly useful when generating HTML.  For
+example, this haml[http://haml-lang.com/] snippet:
+
+    %table
+    - [:a, :b, :c, :d].each_with_floe do |row, floe|
+      %tr{:class => floe}
+        %td= row
+
+would yield this HTML snippet:
+
+    <table>
+        <tr class="first even">
+            <td>a</td>
+        </tr>
+        <tr class="odd">
+            <td>b</td>
+        </tr>
+        <tr class="even">
+            <td>c</td>
+        </tr>
+        <tr class="last odd">
+            <td>d</td>
+        </tr>
+    </table>
+
+== Installing
+
+<code>% sudo gem install array_floe<code>
+
+or, if you're using bundler[http://gembundler.com/]:
+
+    gem "array_floe"
 
 == Copyright
 
-Copyright (c) 2011 Ronen Barzel. See LICENSE.txt for
-further details.
-
+Released under the MIT License.  See LICENSE.txt for further details.
