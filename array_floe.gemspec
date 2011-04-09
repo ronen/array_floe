@@ -31,6 +31,7 @@ It's particularly handy for generating CSS classes.
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "array_floe.gemspec",
     "lib/array_floe.rb",
     "spec/array_floe_spec.rb",
     "spec/spec_helper.rb"
