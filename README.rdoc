@@ -1,9 +1,15 @@
 = array_floe
 
+== Overview
+
 This small extension to ruby's Array class simplifies the reasonably-common
 need to specially handle "floe"--i.e., <b>f</b>irst, <b>l</b>ast, <b>o</b>dd, <b>e</b>ven--when
 iterating through the elements of an array.  It's particularly handy for
 generating CSS classes.
+
+Full Rdoc is available at http://rubydoc.info/gems/array_floe
+
+== Usage
 
 The gem provides two additional iterators, Array#each_with_floe and
 Array#each_with_index_floe, that provide a "floe" object for each element
@@ -38,7 +44,7 @@ of "first", "last", "odd", and "even" as appropriate:
 
     [:a, :b, :c, :d].each_with_floe.collect{|element, floe| floe.to_s} #=> [ "first even", "odd", "even", "last odd" ]
 
-<code>floe.to_s</code> is particularly useful when generating HTML.  For
+<code>floe.to_s</code> is particularly useful to construct CSS classes when generating HTML.  For
 example, this haml[http://haml-lang.com/] snippet:
 
     %table
@@ -65,11 +71,17 @@ would yield this HTML snippet:
 
 == Installing
 
-<code>% sudo gem install array_floe<code>
+Standard installation from http://rubygems.org/gems/array_floe
 
-or, if you're using bundler[http://gembundler.com/]:
+    % sudo gem install array_floe
+
+or, if you're using bundler[http://gembundler.com/], include this line in your Gemfile:
 
     gem "array_floe"
+
+== Ruby Versions
+
+Tested on ruby 1.8.7 and 1.9.2
 
 == Copyright
 
