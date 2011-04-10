@@ -2,80 +2,112 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "ArrayFloe" do
 
-  let (:a1) { Array(0...1) }
-  let (:a5) { Array(0...5) }
+  let (:enumerator) { defined?(Enumerator) ? Enumerator : Enumerable::Enumerator } # ruby 1.9 vs. 1.8
 
-  ["each_with_floe", "each_with_index_floe"].each do |method|
+  let (:a1) { [:a] }
+  let (:a5) { [:a, :b, :c, :d, :e] }
 
-    context method do
+  context "each_with_floe" do
 
-      it "has correct arity" do
-        a5.send(method) do |*args|
-          args.size == (method == "each_with_index_floe" ? 3 : 2)
-        end
+    it "correctly reports first" do
+      a5.each_with_floe do |item, floe|
+        floe.first?.should == (item == :a)
       end
+    end
 
-      it "correctly reports first" do
-        a5.send(method) do |*args|
-          item = args.first
-          floe = args.last
-          floe.first?.should == (item == 0)
-        end
+    it "correctly reports last" do
+      a5.each_with_floe do |item, floe|
+        floe.last?.should == (item == :e)
       end
+    end
 
-      it "correctly reports last" do
-        a5.send(method) do |*args|
-          item = args.first
-          floe = args.last
-          floe.last?.should == (item == 4)
-        end
+    it "correctly reports odd" do
+      a5.each_with_floe do |item, floe|
+        floe.odd?.should == [:b, :d].include?(item)
       end
+    end
 
-      it "correctly reports odd" do
-        a5.send(method) do |*args|
-          item = args.first
-          floe = args.last
-          floe.odd?.should == (item % 2  == 1)
-        end
+    it "correctly reports even" do
+      a5.each_with_floe do |item, floe|
+        floe.even?.should == [:a, :c, :e].include?(item)
       end
+    end
 
-      it "correctly reports even" do
-        a5.send(method) do |*args|
-          item = args.first
-          floe = args.last
-          floe.even?.should == (item % 2  == 0)
-        end
+    it "returns an enumerator" do
+      a5.each_with_floe.should be_an_instance_of enumerator
+    end
+
+    it "iterates on the array entries" do
+      a5.each_with_floe.collect{|item, floe| item}.should == a5
+    end
+
+    it "constructs floe strings" do
+      a5.each_with_floe.collect{ |item, floe| floe.to_s }.should == [
+        "first even",
+        "odd",
+        "even",
+        "odd",
+        "last even"
+      ]
+    end
+
+    it "constructs floe string with first last and even when size == 1" do
+      a1.each_with_floe.collect{|item, floe| floe.to_s}.should == [ "first last even" ]
+    end
+  end
+
+  context "each_with_index_floe" do
+
+    it "passes the index" do
+      a5.each_with_index_floe do |item, i, floe|
+        a5[i].should == item
       end
+    end
 
-      it "returns an enumerator" do
-        a5.send(method).should be_an_instance_of Enumerable::Enumerator
-        a5.send(method).find{|args| args.last.last? }.first.should == 4
+    it "correctly reports first" do
+      a5.each_with_index_floe do |item, i, floe|
+        floe.first?.should == (item == :a)
       end
+    end
 
-      it "iterates on the array entries" do
-        a5.send(method).collect(&:first).should == a5
+    it "correctly reports last" do
+      a5.each_with_index_floe do |item, i, floe|
+        floe.last?.should == (item == :e)
       end
+    end
 
-      if method == "each_with_index_floe"
-        it "passes the index" do
-          a5.send(method).collect{|args| args[1]}.should == a5
-        end
+    it "correctly reports odd" do
+      a5.each_with_index_floe do |item, i, floe|
+        floe.odd?.should == [:b, :d].include?(item)
       end
+    end
 
-      it "constructs floe strings" do
-        a5.send(method).collect{ |args| args.last.to_s }.should == [
-          "first even",
-          "odd",
-          "even",
-          "odd",
-          "last even"
-        ]
+    it "correctly reports even" do
+      a5.each_with_index_floe do |item, i, floe|
+        floe.even?.should == [:a, :c, :e].include?(item)
       end
+    end
 
-      it "constructs first and last floe string when size == 1" do
-        a1.send(method).collect{|args| args.last.to_s}.should == [ "first last even" ]
-      end
+    it "returns an enumerator" do
+      a5.each_with_index_floe.should be_an_instance_of enumerator
+    end
 
+    it "iterates on the array entries" do
+      a5.each_with_index_floe.collect{|item, i, floe| item}.should == a5
+    end
+
+    it "constructs floe strings" do
+      a5.each_with_index_floe.collect{ |item, i, floe| floe.to_s }.should == [
+        "first even",
+        "odd",
+        "even",
+        "odd",
+        "last even"
+      ]
+    end
+
+    it "constructs floe string with first last and even when size == 1" do
+      a1.each_with_index_floe.collect{|item, i, floe| floe.to_s}.should == [ "first last even" ]
     end
 
   end

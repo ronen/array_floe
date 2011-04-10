@@ -1,3 +1,5 @@
+require 'enumerator' unless defined?(Enumerator)
+
 class Array
 
   # The class for the "floe" object that constructed by
@@ -61,7 +63,7 @@ class Array
         yield(element, FirstLastOddEven.new(i, size))
       end
     else
-      Enumerable::Enumerator.new(self, :each_with_floe)
+      to_enum(:each_with_floe)
     end
   end
   
@@ -82,7 +84,7 @@ class Array
         yield(element, i, FirstLastOddEven.new(i, size))
       end
     else
-      Enumerable::Enumerator.new(self, :each_with_index_floe)
+      to_enum(:each_with_index_floe)
     end
   end
 end
