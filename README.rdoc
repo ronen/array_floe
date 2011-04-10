@@ -34,7 +34,7 @@ in the array:
         assert_equal(i == 0,        floe.first?)
         assert_equal(i == ary.last, floe.last?)
         assert_equal(i % 2 == 1,    float.odd?)
-        assert_equal(i % 2 == 1,    float.even?)
+        assert_equal(i % 2 == 0,    float.even?)
     end
 
 If no block is given, an enumerator is returned instead.
