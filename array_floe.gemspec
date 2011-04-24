@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name = 'array_floe'
   s.version = ArrayFloe::VERSION
   s.platform = Gem::Platform::RUBY
-  s.date = Date.today.to_s
+  s.date = "2011-04-23"
   s.authors = ["ronen barzel"]
   s.email = 'ronen@barzel.org'
   s.homepage = %q{http://github.com/ronen/array_floe}
