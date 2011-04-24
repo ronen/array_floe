@@ -1,7 +1,13 @@
 require 'rubygems'
-require 'bundler'
+
 begin
-  Bundler.setup(:default, :development)
+  require 'bundler'
+rescue LoadError
+  $stderr.puts "You must install bundler - run `gem install bundler`"
+end
+
+begin
+  Bundler.setup
 rescue Bundler::BundlerError => e
   $stderr.puts e.message
   $stderr.puts "Run `bundle install` to install missing gems"
@@ -9,37 +15,16 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "array_floe"
-  gem.homepage = "http://github.com/ronen/array_floe"
-  gem.license = "MIT"
-  gem.summary = %Q{Provides iterators Array#each_with_floe and Array#each_with_index_floe}
-  gem.description = %Q{
-This small extension to ruby's Array class provides two additional
-iterators, Array#each_with_floe and Array#each_with_index_floe, that
-simplify the reasonably-common need to specially handle "floe"--i.e.,
-first, last, odd, even--when iterating through the elements of an array.
-It's particularly handy for generating CSS classes.
-  }
-  gem.email = "ronen@barzel.org"
-  gem.authors = ["ronen barzel"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
-end
-Jeweler::RubygemsDotOrgTasks.new
+require 'bueller'
+Bueller::Tasks.new
 
-require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
+  spec.rspec_opts = '-Ispec'
 end
 
 RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rspec_opts = '-Ispec'
   spec.rcov = true
 end
 
@@ -49,6 +34,7 @@ require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
+  rdoc.main = 'README.rdoc'
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "array_floe #{version}"
   rdoc.rdoc_files.include('README*')

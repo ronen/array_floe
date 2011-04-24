@@ -1,3 +1,9 @@
+if RUBY_VERSION > "1.9"
+  require 'simplecov'
+  require 'simplecov-gem-adapter'
+  SimpleCov.start "gem"
+end
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'

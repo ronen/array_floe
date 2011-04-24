@@ -1,3 +1,7 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
 # rcov generated
 coverage
 
@@ -7,12 +11,6 @@ rdoc
 # yard generated
 doc
 .yardoc
-
-# bundler
-.bundle
-
-# jeweler generated
-pkg
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #
