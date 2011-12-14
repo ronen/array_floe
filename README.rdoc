@@ -31,10 +31,10 @@ in the array:
     end
 
     ary.each_with_index_floe do |element, i, floe|
-        assert_equal(i == 0,        floe.first?)
-        assert_equal(i == ary.last, floe.last?)
-        assert_equal(i % 2 == 1,    float.odd?)
-        assert_equal(i % 2 == 0,    float.even?)
+        assert_equal(i == 0,          floe.first?)
+        assert_equal(i == ary.size-1, floe.last?)
+        assert_equal(i % 2 == 1,      float.odd?)
+        assert_equal(i % 2 == 0,      float.even?)
     end
 
 If no block is given, an enumerator is returned instead.
