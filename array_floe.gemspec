@@ -17,10 +17,6 @@ simplify the reasonably-common need to specially handle "floe"--i.e.,
 first, last, odd, even--when iterating through the elements of an array.
 It's particularly handy for generating CSS classes.
   }
-  s.extra_rdoc_files = [
-    "LICENSE.txt",
-    "README.rdoc"
-  ]
 
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.7')
   s.rubygems_version = '1.3.7'
@@ -31,6 +27,7 @@ It's particularly handy for generating CSS classes.
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'simplecov'
