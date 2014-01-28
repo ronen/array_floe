@@ -3,7 +3,6 @@
 [![Build Status](https://secure.travis-ci.org/lomba/schema_plus.png)](http://travis-ci.org/ronen/array_floe)
 [![Dependency Status](https://gemnasium.com/lomba/schema_plus.png)](https://gemnasium.com/ronen/array_floe)
 
-## Overview
 
 This small extension to ruby's Array class simplifies the reasonably-common
 need to specially handle "floe"--i.e., **f**irst, **l**ast, **o**dd,
