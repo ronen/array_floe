@@ -1,4 +1,7 @@
 # array_floe
+[![Gem Version](https://badge.fury.io/rb/array_floe.png)](http://badge.fury.io/rb/array_floe)
+[![Build Status](https://secure.travis-ci.org/lomba/schema_plus.png)](http://travis-ci.org/ronen/array_floe)
+[![Dependency Status](https://gemnasium.com/lomba/schema_plus.png)](https://gemnasium.com/ronen/array_floe)
 
 ## Overview
 
@@ -73,7 +76,7 @@ would yield this HTML snippet:
 
 Standard installation from http://rubygems.org/gems/array_floe
 
-    % sudo gem install array_floe
+    % gem install array_floe
 
 or, if you're using [bundler](http://gembundler.com/), include this line in
 your Gemfile:
@@ -82,7 +85,7 @@ your Gemfile:
 
 ## Ruby Versions
 
-Tested on ruby 1.8.7 and 1.9.2
+Tested on ruby 1.8.7 and 1.9.3 and 2.0.0
 
 ## Copyright
 
