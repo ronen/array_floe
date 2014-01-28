@@ -1,19 +1,19 @@
-= array_floe
+# array_floe
 
-== Overview
+## Overview
 
 This small extension to ruby's Array class simplifies the reasonably-common
-need to specially handle "floe"--i.e., <b>f</b>irst, <b>l</b>ast, <b>o</b>dd, <b>e</b>ven--when
-iterating through the elements of an array.  It's particularly handy for
-generating CSS classes.
+need to specially handle "floe"--i.e., **f**irst, **l**ast, **o**dd,
+**e**ven--when iterating through the elements of an array.  It's particularly
+handy for generating CSS classes.
 
 Full Rdoc is available at http://rubydoc.info/gems/array_floe
 
-== Usage
+## Usage
 
 The gem provides two additional iterators, Array#each_with_floe and
-Array#each_with_index_floe, that provide a "floe" object for each element
-in the array:
+Array#each_with_index_floe, that provide a "floe" object for each element in
+the array:
 
     ary.each_with_floe do |element, floe|
         if floe.first?
@@ -39,13 +39,13 @@ in the array:
 
 If no block is given, an enumerator is returned instead.
 
-The "floe" object's <code>to_s</code> method returns a space-separated list
-of "first", "last", "odd", and "even" as appropriate:
+The "floe" object's `to_s` method returns a space-separated list of "first",
+"last", "odd", and "even" as appropriate:
 
     [:a, :b, :c, :d].each_with_floe.collect{|element, floe| floe.to_s} #=> [ "first even", "odd", "even", "last odd" ]
 
-<code>floe.to_s</code> is particularly useful to construct CSS classes when generating HTML.  For
-example, this haml[http://haml-lang.com/] snippet:
+`floe.to_s` is particularly useful to construct CSS classes when generating
+HTML.  For example, this [haml](http://haml-lang.com/) snippet:
 
     %table
     - [:a, :b, :c, :d].each_with_floe do |row, floe|
@@ -69,20 +69,21 @@ would yield this HTML snippet:
         </tr>
     </table>
 
-== Installing
+## Installing
 
 Standard installation from http://rubygems.org/gems/array_floe
 
     % sudo gem install array_floe
 
-or, if you're using bundler[http://gembundler.com/], include this line in your Gemfile:
+or, if you're using [bundler](http://gembundler.com/), include this line in
+your Gemfile:
 
     gem "array_floe"
 
-== Ruby Versions
+## Ruby Versions
 
 Tested on ruby 1.8.7 and 1.9.2
 
-== Copyright
+## Copyright
 
 Released under the MIT License.  See LICENSE.txt for further details.
