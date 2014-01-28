@@ -87,3 +87,7 @@ Tested on ruby 1.8.7 and 1.9.2
 ## Copyright
 
 Released under the MIT License.  See LICENSE.txt for further details.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ronen/array_floe/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
